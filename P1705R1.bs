@@ -1,14 +1,14 @@
 <pre class='metadata'>
 Title: Enumerating Core Undefined Behavior
 Shortname: P1705
-Revision: 0
+Revision: 1
 Audience: SG12 
-Status: P
+Status: D
 Group: WG21
 URL: http://wg21.link/P1705
 Editor: Shafik Yaghmour, Apple, syaghmour@apple.com
 Abstract: Adding an undefined behavior annex to the Standard and creating an C++ undefined behavior TR
-Date: 2019-06-13
+Date: 2019-09-28
 Markup Shorthands: markdown yes
 Toggle Diffs: yes
 </pre>
@@ -47,10 +47,53 @@ have all the benefits of that annex but with more details and rationale should a
 be a help to researchers both in understanding, developing better tools and perhaps finding alternatives approaches to
 undefined behavior. 
 
+Edit History {#edit}
+============
+
+r0 → r1 {#r0r1}
+-------
+
+[[P1705R0]] was seen by SG12 in Cologne. This update does the
+following:
+
+* Update the implementation of undefined behavior annex section
+* Add details on how implicit undefined behavior will be handled in the annex
+* Add detaisl on stable names for each undefined behavior entry
+* Add an example of how the annex will be formatted 
+
+<table>
+    <thead>
+        <tr>
+            <th>Poll</th>
+            <th>Group</th>
+            <th>SF</th>
+            <th>F</th>
+            <th>N</th>
+            <th>A</th>
+            <th>SA</th>
+            <th>Outcome</th>
+        </tr>
+    </thead>
+    <tr>
+        <th>Add an informative annex to the WD which lists core language UB organized by type to be maintained by someone after initial version from author.</th>
+        <th>SG12</th><th>8</th><th>2</th><th>0</th><th>0</th><th>0</th><th>✅</th>
+    </tr>
+    <tr>
+        <th>Include implicit (by omission) UB on a best effort basis.</th>
+        <th>SG12</th><th>5</th><th>4</th><th>1</th><th>0</th><th>0</th><th>✅</th>
+    </tr>
+    <tr>
+        <th>Target an informative document (TR/SD/?) that contains UB along with rationale and additional information to be maintained by SG12 after initial version from author along the lines of the contents of P1705R0</th>
+        <th>SG12</th><th>3</th><th>3</th><th>3</th><th>1</th><th>0</th><th>✅</th>
+    </tr>
+</table>
+
+
 Goals of Undefined Behavior Annex {#goalsOfAnnex}
 ============
 
 - List all the explicit undefined behavior in the core language. 
+- List implicit undefined behavior in the core language on a best effort basis.
 - Provide at least one example for each undefined behavior.
 
 Benefits of Undefined Behavior Annex {#benefitsOfAnnex}
@@ -67,14 +110,23 @@ Benefits of Undefined Behavior Annex {#benefitsOfAnnex}
 Implementation of Undefined Behavior Annex {#implOfAnnex}
 ============
 
-The Standards implementation defined behavior index is currently implemented using a macro `\indeximpldef`.
-We would envision implementing an undefined behavior annex is a similar fashion for example using a `\undefbehavior` macro. 
-The advantages to this approach would be ease of maintance since the annex would be self maintaining. When new proposals
-introduce or take away undefined behavior it would be a matter of adding or removing markup. 
+Annex E will be modeled similar Annex C  with a description of each undefined and at least one example. Each Annex E 
+entry will have its own stable name that we can use to refer to the specific undefined behavior unambiguously. 
 
-The one additional feature I would add would be to include an example for each undefined behavior which would also be part
-of the annex. This could be implemented as part of the `\undefbehavior` macro or implemented via a second macro for example 
-`\undefbehaviorexample` macro.
+There will be two macros one to link each annex entry back to the normative wording via a reference and a second macro 
+to link the normative wording to the Annex E via a reference. Having a two way reference will us to maintain the Annex E
+more seamlessly without having to worry about the normative text moving or being removed without this being reflected in 
+Annex E. 
+
+Stable Names
+============
+
+Stables names will take the form of ub.SectionName.UniqueName. For example:
+
+* [ub.lex.phases.spliceucn]
+* [ub.lex.phases.tokenconcatucn]
+* [ub.lex.string.modstringliteral]
+* [ub.basic.def.odr]
 
 Goals of Undefined Behavior TR {#goalsOfTR}
 ============
