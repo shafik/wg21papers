@@ -58,7 +58,7 @@ following:
 
 * Update the implementation of undefined behavior annex section
 * Add details on how implicit undefined behavior will be handled in the annex
-* Add detaisl on stable names for each undefined behavior entry
+* Add details on stable names for each undefined behavior entry
 * Add an example of how the annex will be formatted 
 
 <table>
@@ -110,10 +110,10 @@ Benefits of Undefined Behavior Annex {#benefitsOfAnnex}
 Implementation of Undefined Behavior Annex {#implOfAnnex}
 ============
 
-Annex E will be modeled similar Annex C  with a description of each undefined and at least one example. Each Annex E 
+Annex E will be modeled similar Annex C  with a description of each undefined behavior and at least one example. Each Annex E 
 entry will have its own stable name that we can use to refer to the specific undefined behavior unambiguously. 
 
-There will be two macros one to link each annex entry back to the normative wording via a reference and a second macro 
+There will be two LaTeX macros: one to link each annex entry back to the normative wording via a reference, and a second macro 
 to link the normative wording to the Annex E via a reference. Having a two way reference will us to maintain the Annex E
 more seamlessly without having to worry about the normative text moving or being removed without this being reflected in 
 Annex E. 
